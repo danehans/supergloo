@@ -1,0 +1,19 @@
+apiVersion: supergloo.solo.io/v1
+kind: RoutingRule
+metadata:
+  name: reviews-v1
+  namespace: supergloo-system
+spec:
+  destinations:
+    - name: default-reviews-9080
+      namespace: supergloo-system
+  targetMesh:
+    name: istio-rtr5qn
+    namespace: supergloo-system
+  trafficShifting:
+    destinations:
+      - upstream:
+          name: default-reviews-v1-9080
+          namespace: supergloo-system
+        weight: 100
+---
